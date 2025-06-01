@@ -34,24 +34,25 @@ npm i -g azure-functions-core-tools@4 --unsafe-perm true
    dotnet restore
    dotnet build
    ```
-3. **Configura** `local.settings.json` con tu `SqlConnectionString`.
+3. **Configura** `local.settings.json` con tu `SqlConnectionString`.  
+
 4. **Inicia** la función:
    ```bash
    func start
    ```
 5. **Prueba** los endpoints:
    ```bash
-    curl http://localhost:7071/api/status
-    curl -X POST http://localhost:7071/api/records \
-        -H "Content-Type: application/json" \
-        -d '{
-              "infoId": 1,
-              "modeloIA": "gpt-4o",
-              "apiKey": "sk-XXXX",
-              "token": "someAuthToken",
-              "maxTokens": 4096
-            }'
-```
+      curl http://localhost:7071/api/status
+      curl -X POST http://localhost:7071/api/records \
+          -H "Content-Type: application/json" \
+          -d '{
+                "infoId": 1,
+                "modeloIA": "gpt-4o",
+                "apiKey": "sk-XXXX",
+                "token": "someAuthToken",
+                "maxTokens": 4096
+              }'
+   ```
 
 ## Despliegue en Azure
 
