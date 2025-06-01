@@ -1,45 +1,29 @@
 using System;
 using System.Collections.Generic;
-using System.Data;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.Data.SqlClient;
 using Microsoft.Extensions.Configuration;
 
-namespace SharedLayer
+namespace SharedLayer;
+
+public sealed class SqlConnector
 {
-    public sealed class SqlConnector
+    private readonly string _conn;
+    public SqlConnector(IConfiguration cfg) => _conn = cfg["SqlConnectionString"] ?? throw new("Conn str missing");
+
+    public async Task ExecuteAsync(string sql, IEnumerable<SqlParameter> parameters)
     {
-        private readonly string _connectionString;
-
-        public SqlConnector(IConfiguration configuration)
+        await using var cn = new SqlConnection(_conn);
+        await cn.OpenAsync();
+        await using var tx = cn.BeginTransaction();
+        try
         {
-            _connectionString = configuration["SqlConnectionString"]
-                ?? throw new ArgumentNullException(nameof(configuration), "Environment variable 'SqlConnectionString' not found.");
+            await using var cmd = new SqlCommand(sql, cn, tx);
+            cmd.Parameters.AddRange(parameters.ToArray());
+            await cmd.ExecuteNonQueryAsync();
+            await tx.CommitAsync();
         }
-
-        public async Task<int> ExecuteAsync(string sql, IEnumerable<SqlParameter> parameters)
-        {
-            await using var connection = new SqlConnection(_connectionString);
-            await connection.OpenAsync();
-            await using var command = new SqlCommand(sql, connection);
-            command.Parameters.AddRange(parameters.ToArray());
-            return await command.ExecuteNonQueryAsync();
-        }
-
-        public async Task<List<T>> QueryAsync<T>(string sql, Func<SqlDataReader, T> map, IEnumerable<SqlParameter> parameters)
-        {
-            var results = new List<T>();
-            await using var connection = new SqlConnection(_connectionString);
-            await connection.OpenAsync();
-            await using var command = new SqlCommand(sql, connection);
-            command.Parameters.AddRange(parameters.ToArray());
-            await using var reader = await command.ExecuteReaderAsync();
-            while (await reader.ReadAsync())
-            {
-                results.Add(map(reader));
-            }
-            return results;
-        }
+        catch { await tx.RollbackAsync(); throw; }
     }
 }

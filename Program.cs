@@ -1,14 +1,22 @@
 using Microsoft.Azure.Functions.Worker;
-using Microsoft.Azure.Functions.Worker.Builder;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Microsoft.EntityFrameworkCore;
+using Data;
 
-var builder = FunctionsApplication.CreateBuilder(args);
+var host = new HostBuilder()
+    .ConfigureFunctionsWebApplication()
+    .ConfigureAppConfiguration(cfg =>
+    {
+        cfg.AddJsonFile("local.settings.json", optional: true, reloadOnChange: true)
+           .AddEnvironmentVariables();
+    })
+    .ConfigureServices((ctx, services) =>
+    {
+        var conn = ctx.Configuration["SqlConnectionString"]!;
+        services.AddDbContext<ContextoVotoDB>(o => o.UseSqlServer(conn));
+    })
+    .Build();
 
-builder.ConfigureFunctionsWebApplication();
-
-builder.Services
-    .AddApplicationInsightsTelemetryWorkerService()
-    .ConfigureFunctionsApplicationInsights();
-
-builder.Build().Run();
+host.Run();
