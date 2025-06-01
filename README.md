@@ -16,6 +16,7 @@ Este proyecto implementa un prototipo de sistema de voto electrónico y crowdfun
 
 ## Estructura del Proyecto
 
+```txt
 VotoPuraVida/
 │
 ├── Functions/                # Azure Functions (Stored Proc + ORM)
@@ -29,7 +30,7 @@ VotoPuraVida/
 ├── Program.cs                # Inicialización del host
 ├── VotoPuraVida.csproj       # Proyecto C#
 └── README.md
-
+```
 ---
 
 ## Instalación y Ejecución Local
@@ -41,14 +42,15 @@ VotoPuraVida/
 - SQL Server LocalDB o instancia completa
 
 ### 2. Clona el Repositorio
-
+```bash
 git clone https://github.com/tuusuario/VotoPuraVida.git
 cd VotoPuraVida
+```
 
 ### 3. Configura la Cadena de Conexión
 
 Edita el archivo local.settings.json:
-
+```json
 {
   "IsEncrypted": false,
   "Values": {
@@ -57,13 +59,14 @@ Edita el archivo local.settings.json:
     "SqlConnectionString": "Server=localhost;Database=VotoPuraVida;User Id=tuUsuario;Password=tuPassword;"
   }
 }
+```
 
 Asegúrate de tener una base de datos llamada VotoPuraVida creada previamente.
 
 ### 4. Aplicar Migraciones (solo para endpoints ORM)
-
+```bash
 dotnet ef database update
-
+```
 Usa `dotnet tool install --global dotnet-ef` si no tienes el CLI de EF instalado.
 
 ### 5. Ejecutar la API
