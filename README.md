@@ -1,10 +1,10 @@
-# 🗳️ Voto Pura Vida - API Serverless
+# Voto Pura Vida - API Serverless
 
 Este proyecto implementa un prototipo de sistema de voto electrónico y crowdfunding con una arquitectura serverless local usando Azure Functions (C#) y SQL Server. Cumple con los requisitos del Micitt, incluyendo transacciones seguras, validaciones críticas, integridad de datos y soporte para inteligencia artificial.
 
 ---
 
-## 📦 Tecnologías Utilizadas
+## Tecnologías Utilizadas
 
 - .NET 8 + C#
 - Azure Functions (Runtime local)
@@ -14,7 +14,7 @@ Este proyecto implementa un prototipo de sistema de voto electrónico y crowdfun
 
 ---
 
-## 📁 Estructura del Proyecto
+## Estructura del Proyecto
 
 VotoPuraVida/
 │
@@ -32,7 +32,7 @@ VotoPuraVida/
 
 ---
 
-## 🚀 Instalación y Ejecución Local
+## Instalación y Ejecución Local
 
 ### 1. Requisitos Previos
 
@@ -58,13 +58,13 @@ Edita el archivo local.settings.json:
   }
 }
 
-💡 Asegúrate de tener una base de datos llamada VotoPuraVida creada previamente.
+Asegúrate de tener una base de datos llamada VotoPuraVida creada previamente.
 
 ### 4. Aplicar Migraciones (solo para endpoints ORM)
 
 dotnet ef database update
 
-💡 Usa `dotnet tool install --global dotnet-ef` si no tienes el CLI de EF instalado.
+Usa `dotnet tool install --global dotnet-ef` si no tienes el CLI de EF instalado.
 
 ### 5. Ejecutar la API
 
@@ -74,7 +74,7 @@ La API estará disponible en http://localhost:7071
 
 ---
 
-## 📌 Endpoints Disponibles
+## Endpoints Disponibles
 
 ### Stored Procedures
 
@@ -96,14 +96,14 @@ La API estará disponible en http://localhost:7071
 
 ---
 
-## 🧠 IA y Validaciones
+## IA y Validaciones
 
 - Los endpoints `crearActualizarPropuesta` y `revisarPropuesta` preparan estructuras para validación con IA (análisis de contenido, archivos).
 - Posibilidad de integrar LLMs como OpenAI, Azure AI o Hugging Face.
 
 ---
 
-## 🛡️ Seguridad y Control Transaccional
+## Seguridad y Control Transaccional
 
 - Transacciones completas en SP y ORM (`BEGIN`, `COMMIT`, `ROLLBACK`)
 - Validaciones críticas
