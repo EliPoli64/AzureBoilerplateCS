@@ -8,7 +8,7 @@ Boilerplate **serverless** en **C# /.NET 8** para Azure Functions, con conexi
 | `POST` | `/records`  | Inserta un registro en `SampleTable`    |
 
 
-## ⚙️ Prerrequisitos
+## Prerrequisitos
 
 | Herramienta                              | Versión mínima |
 |------------------------------------------|----------------|
@@ -53,7 +53,7 @@ npm i -g azure-functions-core-tools@4 --unsafe-perm true
             }'
 ```
 
-## ☁️ Despliegue en Azure
+## Despliegue en Azure
 
 1. **Inicia sesión** y selecciona subscription:
    ```bash
@@ -84,12 +84,8 @@ npm i -g azure-functions-core-tools@4 --unsafe-perm true
    curl https://VotoPuraVidaApiCs.azurewebsites.net/api/status
    ```
 
-## 🧩 Capas compartidas
+## Capas compartidas
 
-La carpeta **SharedLayer** actúa como capa reutilizable. Si tu lógica crece, conviértela en un proyecto/lib independiente y añádelo como referencia o NuGet interno.
+La carpeta **SharedLayer** actúa como capa reutilizable. Si la lógica crece, se puede convertir en un 
+proyecto/lib independiente y añádelo como referencia o NuGet interno.
 
-## ✅ Buenas prácticas
-
-* Mantén secretos fuera de Git y usa Azure Key Vault.
-* Habilita Application Insights para monitoreo.
-* Restringe firewall de Azure SQL a la outbound IP de tu Function App.
