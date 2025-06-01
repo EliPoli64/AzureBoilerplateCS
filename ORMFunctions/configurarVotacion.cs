@@ -1,11 +1,7 @@
 namespace OrmFunctions;
 using System.Net;
-using System.Text.Json;
 using Microsoft.Azure.Functions.Worker;
 using Microsoft.Azure.Functions.Worker.Http;
-using Microsoft.Data.SqlClient;
-using SharedLayer;
-using Microsoft.Extensions.Configuration;
 using Data;
 public class ConfigurarVotacion(ContextoVotoDB db)
 {
