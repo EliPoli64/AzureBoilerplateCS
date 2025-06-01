@@ -22,7 +22,7 @@ Instala Core Tools (Linux/macOS vía npm):
 npm i -g azure-functions-core-tools@4 --unsafe-perm true
 ```
 
-## 🚀 Ejecución local
+## Ejecución local
 
 1. **Clona** el repositorio y entra:
    ```bash
