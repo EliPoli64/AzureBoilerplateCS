@@ -10,8 +10,6 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Debug", "Debug", "{3DB07252
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "net8.0", "net8.0", "{BA64DA0F-47DD-4310-553B-4CC85DEE94FB}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WorkerExtensions", "obj\Debug\net8.0\WorkerExtensions\WorkerExtensions.csproj", "{D5C34E5E-AF2B-711A-19AB-60979F4F9D10}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
