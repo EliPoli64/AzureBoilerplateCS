@@ -70,8 +70,9 @@ dotnet ef database update
 Usa `dotnet tool install --global dotnet-ef` si no tienes el CLI de EF instalado.
 
 ### 5. Ejecutar la API
-
+```bash
 func start
+```
 
 La API estará disponible en http://localhost:7071
 
